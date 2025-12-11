@@ -34,7 +34,6 @@ CREATE EXTERNAL TABLE IF NOT EXISTS flights_sqoop_raw (
 ROW FORMAT DELIMITED 
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n' 
-TBLPROPERTIES ("skip.header.line.count"="1")
 LOCATION '/user/demo/flights/sqoop_data/';
 
 --Get metadata of table
@@ -73,7 +72,6 @@ CREATE EXTERNAL TABLE IF NOT EXISTS flights_flume_raw (
 ROW FORMAT DELIMITED 
 FIELDS TERMINATED BY ','
 LINES TERMINATED BY '\n' 
-TBLPROPERTIES ("skip.header.line.count"="1")
 LOCATION '/user/demo/flights/flume_data/';
 
 --Get metadata of table
