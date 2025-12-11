@@ -43,7 +43,7 @@ DESCRIBE flights_sqoop_raw;
 SELECT COUNT(*) FROM flights_sqoop_raw;
 
 --Get data of table
-SELECT * FROM flights_sqoop_raw LIMIT 5
+SELECT * FROM flights_sqoop_raw LIMIT 5;
 
 --Creates flights_flume_raw external table  link: '/user/demo/flights/flume_data/'
 CREATE EXTERNAL TABLE IF NOT EXISTS flights_flume_raw (
@@ -81,4 +81,4 @@ DESCRIBE flights_flume_raw;
 SELECT COUNT(*) FROM flights_flume_raw;
 
 --Get data of table
-SELECT * FROM flights_flume_raw LIMIT 5
+SELECT * FROM flights_flume_raw LIMIT 5;
