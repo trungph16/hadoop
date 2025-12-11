@@ -1,7 +1,7 @@
 use flights;
 
 --Thống kê số chuyến bay theo từng hãng
-INSERT OVERWRITE DIRECTORY '/user/demo/flights/hive_output/'
+INSERT OVERWRITE DIRECTORY '/user/demo/flights/hive_output/output_1/'
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
 SELECT carrier, carrier, COUNT(*) AS total_flights
@@ -10,7 +10,7 @@ WHERE month is not null
 GROUP BY carrier, carrier_name;
 
 --Tính tỷ lệ delay theo từng hãng
-INSERT OVERWRITE DIRECTORY '/user/demo/flights/hive_output/'
+INSERT OVERWRITE DIRECTORY '/user/demo/flights/hive_output/output_2/'
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
 SELECT 
@@ -24,7 +24,7 @@ GROUP BY carrier, carrier_name
 ORDER BY delay_rate_percent DESC;
 
 --Tìm top 5 sân bay có tổng phút delay cao nhất
-INSERT OVERWRITE DIRECTORY '/user/demo/flights/hive_output/'
+INSERT OVERWRITE DIRECTORY '/user/demo/flights/hive_output/out_put_3/'
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
 SELECT 
@@ -37,7 +37,7 @@ ORDER BY total_arrival_delay_minutes DESC
 LIMIT 5;
 
 --Phân tích nguyên nhân delay theo từng hãng
-INSERT OVERWRITE DIRECTORY '/user/demo/flights/hive_output/'
+INSERT OVERWRITE DIRECTORY '/user/demo/flights/hive_output/output_4/'
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
 SELECT 
