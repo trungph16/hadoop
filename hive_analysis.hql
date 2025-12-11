@@ -41,7 +41,7 @@ INSERT OVERWRITE DIRECTORY '/user/demo/flights/hive_output/'
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
 SELECT 
-    carrier, carrier_name
+    carrier, carrier_name,
     SUM(weather_delay) AS weather_delay_min,
     SUM(carrier_delay) AS carrier_delay_min,
     SUM(nas_delay) AS nas_delay_min,
