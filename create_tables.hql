@@ -17,11 +17,11 @@ CREATE EXTERNAL TABLE IF NOT EXISTS flights_sqoop_raw (
     airport_name STRING,
     arr_flights INT,
     arr_del15 INT,
-    carrier_ct INT,
-    weather_ct INT,
-    nas_ct INT,
-    security_ct INT,
-    late_aircraft_ct INT,
+    carrier_ct FLOAT,
+    weather_ct FLOAT,
+    nas_ct FLOAT,
+    security_ct FLOAT,
+    late_aircraft_ct FLOAT,
     arr_cancelled INT,
     arr_diverted INT,
     arr_delay DECIMAL(10,2),
@@ -31,10 +31,15 @@ CREATE EXTERNAL TABLE IF NOT EXISTS flights_sqoop_raw (
     security_delay DECIMAL(10,2),
     late_aircraft_delay DECIMAL(10,2)
 )
-ROW FORMAT DELIMITED 
-FIELDS TERMINATED BY ','
-LINES TERMINATED BY '\n' 
-LOCATION '/user/demo/flights/sqoop_data/';
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe'
+WITH SERDEPROPERTIES (
+  'field.delim'=',',
+  'serialization.format'=','
+)
+LOCATION '/user/demo/flights/sqoop_data/'
+TBLPROPERTIES (
+  'skip.header.line.count'='1'
+);
 
 --Get metadata of table
 DESCRIBE flights_sqoop_raw;
@@ -47,7 +52,7 @@ SELECT * FROM flights_sqoop_raw LIMIT 5;
 
 --Creates flights_flume_raw external table  link: '/user/demo/flights/flume_data/'
 CREATE EXTERNAL TABLE IF NOT EXISTS flights_flume_raw (
-    year SMALLINT,
+        year SMALLINT,
     month TINYINT,
     carrier STRING,
     carrier_name STRING,
@@ -55,11 +60,11 @@ CREATE EXTERNAL TABLE IF NOT EXISTS flights_flume_raw (
     airport_name STRING,
     arr_flights INT,
     arr_del15 INT,
-    carrier_ct INT,
-    weather_ct INT,
-    nas_ct INT,
-    security_ct INT,
-    late_aircraft_ct INT,
+    carrier_ct FLOAT,
+    weather_ct FLOAT,
+    nas_ct FLOAT,
+    security_ct FLOAT,
+    late_aircraft_ct FLOAT,
     arr_cancelled INT,
     arr_diverted INT,
     arr_delay DECIMAL(10,2),
@@ -69,10 +74,15 @@ CREATE EXTERNAL TABLE IF NOT EXISTS flights_flume_raw (
     security_delay DECIMAL(10,2),
     late_aircraft_delay DECIMAL(10,2)
 )
-ROW FORMAT DELIMITED 
-FIELDS TERMINATED BY ','
-LINES TERMINATED BY '\n' 
-LOCATION '/user/demo/flights/flume_data/';
+ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe'
+WITH SERDEPROPERTIES (
+  'field.delim'=',',
+  'serialization.format'=','
+)
+LOCATION '/user/demo/flights/flume_data/'
+TBLPROPERTIES (
+  'skip.header.line.count'='1'
+);
 
 --Get metadata of table
 DESCRIBE flights_flume_raw;
